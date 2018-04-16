@@ -7,15 +7,19 @@ export default class loginScreen extends React.Component{
         userName:'',
         password:'',
     }
+    static navigationOptions = {
+        header:null,
+    }
 
     userNameInput = (userName) => {this.setState({userName})}
     passwordInput = (password) => {this.setState({password})}
 
+    _onSubmit = () => {
+    }
+
     render(){
         return(
-            <View>
-                <LoginInput {...this.state} userNameInput = {this.userNameInput} passwordInput={this.passwordInput}/>
-            </View>
+                <LoginInput {...this.state} userNameInput = {this.userNameInput} passwordInput={this.passwordInput} onSubmit={this._onSubmit}/>
         )
     }
 }
