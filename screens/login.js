@@ -1,8 +1,10 @@
 import React from 'react'
 import {Text,View,Button} from 'react-native'
 import LoginInput from '../components/loginInput'
+import {connect} from 'react-redux'
+import { logInUser } from '../redux/action';
 
-export default class loginScreen extends React.Component{
+class loginScreen extends React.Component{
     state = {
         userName:'',
         password:'',
@@ -15,6 +17,7 @@ export default class loginScreen extends React.Component{
     passwordInput = (password) => {this.setState({password})}
 
     _onSubmit = () => {
+        this.props.login(this.state.userName,this.state.password)
     }
 
     render(){
@@ -23,3 +26,5 @@ export default class loginScreen extends React.Component{
         )
     }
 }
+
+export default connect (null,{login:logInUser})(loginScreen)
