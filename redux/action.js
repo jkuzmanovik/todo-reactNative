@@ -4,7 +4,7 @@ export const LOG_IN_FULFILLED = 'LOG_IN_FULFILLED'
 export const LOG_IN_REJECTED = 'LOG_IN_REJECTED'
 
 
-
+//async function for login user
 export const logInUser = (username,password) => async dispatch => {
     dispatch({type:LOG_IN_SENT})
     try{

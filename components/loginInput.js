@@ -18,7 +18,8 @@ const LoginInput = (props) => (
     </View>
 )
 
-function loginButton(props) {
+//Conditional rendering if is in proces of fetching display loading Button
+ loginButton = (props) => {
     if(props.fetching)
         return(
             <Button loading large backgroundColor='#7e8a9e' rounded  onPress={props.onSubmit} />
@@ -57,5 +58,6 @@ LoginInput.propTypes = {
     userNameInput: PropTypes.func.isRequired,
     passwordInput: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
+    fetching: PropTypes.bool.isRequired,
 }
 export default LoginInput

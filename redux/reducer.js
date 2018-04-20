@@ -10,8 +10,6 @@ const initialState = {
 
 const merge = (prev, next) => Object.assign({}, prev, next)
 
-
-
 const userReducer = (state = initialState,action) => {
 
     switch(action.type){

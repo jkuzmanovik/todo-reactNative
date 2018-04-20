@@ -2,13 +2,16 @@ import React from 'react'
 import {Text,View,Button} from 'react-native'
 
 export default class loginScreen extends React.Component{
-    state = {
+
+
+    static navigationOptions = {
+        header:null,
     }
 
     render(){
         return(
             <View>
-                <Text> loginScreen </Text>
+                <Text> todo screen right here </Text>
             </View>
         )
     }

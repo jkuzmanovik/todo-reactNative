@@ -9,13 +9,23 @@ class loginScreen extends React.Component{
         userName:'',
         password:'',
     }
+
+    //disble header back Button
     static navigationOptions = {
         header:null,
     }
 
+    //If there is token navigate to todo screen
+    componentWillReceiveProps(nextProps){
+        if(nextProps.token)
+            this.props.navigation.navigate('todo')
+    }
+
+    //hadnle user Input
     userNameInput = (userName) => {this.setState({userName})}
     passwordInput = (password) => {this.setState({password})}
 
+    //Call login reducer
     _onSubmit = async () => {
         await this.props.login(this.state.userName,this.state.password)
     }
@@ -26,11 +36,11 @@ class loginScreen extends React.Component{
     }
 }
 
-const mapStateToProps = state => ({
-    token:state.user.token,
-    userId:state.user.userId,
-    fetching:state.user.fetching,
-    err:state.user.err,
+const mapStateToProps = ({user}) => ({
+    token:user.token,
+    userId:user.userId,
+    fetching:user.fetching,
+    err:user.err,
 })
 
 
