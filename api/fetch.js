@@ -1,4 +1,6 @@
 import {LOGIN} from '../configuration'
+import { LOG_IN_REJECTED } from '../redux/action';
+
 
 
 export const login = async (email,password) => {
@@ -14,7 +16,11 @@ export const login = async (email,password) => {
                 'Content-Type': 'application/json'
               })
         })
+        // if(!returned.ok)
+        //     throw new Error(returned.ok)
         const Token = await returned.json()
         return Token
-    }catch(err) {console.log(err)}
+    }catch(err){
+        throw new Error(err)
+    } 
 }

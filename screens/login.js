@@ -16,15 +16,22 @@ class loginScreen extends React.Component{
     userNameInput = (userName) => {this.setState({userName})}
     passwordInput = (password) => {this.setState({password})}
 
-    _onSubmit = () => {
-        this.props.login(this.state.userName,this.state.password)
+    _onSubmit = async () => {
+        await this.props.login(this.state.userName,this.state.password)
     }
-
     render(){
         return(
-                <LoginInput {...this.state} userNameInput = {this.userNameInput} passwordInput={this.passwordInput} onSubmit={this._onSubmit}/>
+                <LoginInput {...this.state} fetching = {this.props.fetching}  userNameInput = {this.userNameInput} passwordInput={this.passwordInput} onSubmit={this._onSubmit}/>
         )
     }
 }
 
-export default connect (null,{login:logInUser})(loginScreen)
+const mapStateToProps = state => ({
+    token:state.user.token,
+    userId:state.user.userId,
+    fetching:state.user.fetching,
+    err:state.user.err,
+})
+
+
+export default connect (mapStateToProps,{login:logInUser})(loginScreen)

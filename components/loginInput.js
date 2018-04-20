@@ -2,6 +2,7 @@ import React from 'react'
 import {Text,View,TextInput,StyleSheet,} from 'react-native'
 import {FormLabel,FormInput, FormValidationMessage,Button,} from 'react-native-elements'
 import PropTypes from 'prop-types'
+import { login } from '../api/fetch';
 
 const LoginInput = (props) => (
     <View style={styles.container}>
@@ -12,10 +13,19 @@ const LoginInput = (props) => (
             <FormInput placeholder='Please enter your Password' onChangeText = {props.passwordInput} secureTextEntry />
         </View>
         <View style={styles.footer}>
-            <Button large backgroundColor='#7e8a9e' rounded title='login' onPress={props.onSubmit} />
+            {loginButton(props)}
         </View>
     </View>
 )
+
+function loginButton(props) {
+    if(props.fetching)
+        return(
+            <Button loading large backgroundColor='#7e8a9e' rounded  onPress={props.onSubmit} />
+        )
+        return(    <Button title="LOADING BUTTON" large backgroundColor='#7e8a9e' rounded title='login' onPress={props.onSubmit} />
+    )
+}
 
 const styles = StyleSheet.create({
     container:{
