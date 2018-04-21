@@ -8,9 +8,11 @@ const LoginInput = (props) => (
     <View style={styles.container}>
         <View style={styles.inputs}>
             <FormLabel>Username </FormLabel>
-            <FormInput placeholder='Please enter your Username'  onChangeText = {props.userNameInput}  />
+            <FormInput   errorMessage = {props.err}       placeholder='Please enter your Username'  onChangeText = {props.userNameInput} autoCapitalize = {'none'}  />
+            {checkError(props,'email')}
             <FormLabel>password </FormLabel>
-            <FormInput placeholder='Please enter your Password' onChangeText = {props.passwordInput} secureTextEntry />
+            <FormInput placeholder='Please enter your Password' onChangeText = {props.passwordInput} secureTextEntry autoCapitalize = {'none'} />
+            {checkError(props,'password')}
         </View>
         <View style={styles.footer}>
             {loginButton(props)}
@@ -18,14 +20,23 @@ const LoginInput = (props) => (
     </View>
 )
 
+checkError = (props,input) =>{
+    const errorMessage = props.err.message
+    if(errorMessage && errorMessage === input)
+        return <FormValidationMessage>{"Missing  " + errorMessage }</FormValidationMessage>
+    return null
+}
+
+
 //Conditional rendering if is in proces of fetching display loading Button
  loginButton = (props) => {
     if(props.fetching)
         return(
             <Button loading large backgroundColor='#7e8a9e' rounded  onPress={props.onSubmit} />
-        )
-        return(    <Button title="LOADING BUTTON" large backgroundColor='#7e8a9e' rounded title='login' onPress={props.onSubmit} />
-    )
+             )
+       return(
+                <Button title="LOADING BUTTON"  large backgroundColor='#7e8a9e' rounded title='login' onPress={props.onSubmit} />
+               )
 }
 
 const styles = StyleSheet.create({
@@ -59,5 +70,6 @@ LoginInput.propTypes = {
     passwordInput: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
     fetching: PropTypes.bool.isRequired,
+    inputFormValid: PropTypes.bool.isRequired,
 }
 export default LoginInput

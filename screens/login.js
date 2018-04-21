@@ -3,11 +3,14 @@ import {Text,View,Button} from 'react-native'
 import LoginInput from '../components/loginInput'
 import {connect} from 'react-redux'
 import { logInUser } from '../redux/action';
+import {validateInput} from '../helpers'
 
 class loginScreen extends React.Component{
     state = {
         userName:'',
         password:'',
+        inputFormValid:false,
+        err:'',
     }
 
     //disble header back Button
@@ -22,16 +25,27 @@ class loginScreen extends React.Component{
     }
 
     //hadnle user Input
-    userNameInput = (userName) => {this.setState({userName})}
-    passwordInput = (password) => {this.setState({password})}
+
+
+    userNameInput =  (userName) => {
+         this.setState({userName,})
+    }
+    passwordInput = (password) => {
+        this.setState({password,})
+    }
 
     //Call login reducer
     _onSubmit = async () => {
+        try{
+        const inputFormValid =  validateInput(this.state.userName,this.state.password)
         await this.props.login(this.state.userName,this.state.password)
+        }catch(err){
+            this.setState({err})
+        }
     }
     render(){
         return(
-                <LoginInput {...this.state} fetching = {this.props.fetching}  userNameInput = {this.userNameInput} passwordInput={this.passwordInput} onSubmit={this._onSubmit}/>
+                <LoginInput {...this.state} fetching = {this.props.fetching}   userNameInput = {this.userNameInput} passwordInput={this.passwordInput} onSubmit={this._onSubmit}/>
         )
     }
 }
