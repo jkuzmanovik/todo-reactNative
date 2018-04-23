@@ -6,6 +6,7 @@ const initialState = {
     token:'',
     userId:'',
     err:null,
+    
 }
 
 const merge = (prev, next) => Object.assign({}, prev, next)

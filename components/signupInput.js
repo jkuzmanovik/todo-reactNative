@@ -17,8 +17,23 @@ const signup = (props) => (
             <FormLabel>Password </FormLabel>
             <FormInput secureTextEntry placeholder='Please enter your passowrd' value = {props.password} onChangeText = {props.textInput('password')} autoCapitalize = {'none'}/>
         </View>
+        <View>
+            {loginButton(props)}
+        </View>
     </View>
 )
+
+loginButton = (props) => {
+    if(props.fetching)
+        return(
+            <Button loading large backgroundColor='#7e8a9e' rounded  onPress={props.onSubmit} />
+             )
+       return(
+                <Button large backgroundColor='#7e8a9e' rounded title='login' onPress={props.onSubmit} />
+               )
+}
+
+
 
 // checkError = (props,input) =>{
 //     const errorMessage = props.err.message
@@ -34,6 +49,7 @@ signup.propTypes = {
     lastName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
+    fetching:PropTypes.bool.isRequired,
 }
 
 export default signup 

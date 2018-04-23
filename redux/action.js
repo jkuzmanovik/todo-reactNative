@@ -5,10 +5,11 @@ export const LOG_IN_REJECTED = 'LOG_IN_REJECTED'
 
 
 //async function for login user
-export const logInUser = (username,password) => async dispatch => {
+export const logInUser = (data) => async dispatch => {
     dispatch({type:LOG_IN_SENT})
     try{
-        const {token,userId} = await login(username,password)
+        const {token,userId} = await login(data)
+        console.log('aj da vidime sega ' + token + userId)
         dispatch({type:LOG_IN_FULFILLED,payload:{token,userId}})
     }catch(err){
         dispatch({type:LOG_IN_REJECTED,payload:{err:true}})

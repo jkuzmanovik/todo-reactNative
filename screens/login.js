@@ -37,8 +37,12 @@ class loginScreen extends React.Component{
     //Call login reducer
     _onSubmit = async () => {
         try{
+        const data = {
+            email:this.state.userName,
+            password:this.state.password,
+        }
         const inputFormValid =  validateInput(this.state.userName,this.state.password)
-        await this.props.login(this.state.userName,this.state.password)
+        await this.props.login(data)
         }catch(err){
             this.setState({err})
         }
