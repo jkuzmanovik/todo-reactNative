@@ -6,13 +6,11 @@ import { LOG_IN_REJECTED } from '../redux/action';
 
 export const login = async (data) => {
     try{
-        console.log('vlagam vo login ja')
         const URL = null
-        if(data.firstName)  
+        if(data.userName)  
             URL = SIGNUP 
         else
             URL = LOGIN 
-        console.log(URL)
         const returned = await fetch(URL,{
             method: 'POST',
             body:JSON.stringify(data),
@@ -20,7 +18,7 @@ export const login = async (data) => {
                 'Content-Type': 'application/json'
               })
         })
-        // if(!returned.ok)
+        // if(!returined.ok)
         //     throw new Error(returned.ok)
         const Token = await returned.json()
         return Token

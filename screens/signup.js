@@ -2,6 +2,7 @@ import React from 'react'
 import SignupInput from '../components/signupInput'
 import {connect} from 'react-redux'
 import { logInUser } from '../redux/action';
+import {validateInput} from '../helpers'
 
 class signupScreen extends React.Component{
 
@@ -16,6 +17,8 @@ class signupScreen extends React.Component{
         lastName:'',
         email:'',
         password:'',
+        inputFormValid:false,
+        err:{},
     }
 
     componentWillReceiveProps(nextProps){
@@ -33,15 +36,16 @@ class signupScreen extends React.Component{
                 email:this.state.email,
                 password:this.state.password,
             }
+            const inputFormValid =  validateInput(data)
             await this.props.login(data)
             }catch(err){
                 this.setState({err})
             }
         }
 
-
-
     textInput = field => value => { this.setState({[field]:value}) }
+
+
     render(){
         return(
             <SignupInput {...this.state} textInput = {this.textInput} onSubmit = {this._onSubmit} />

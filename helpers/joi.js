@@ -20,6 +20,13 @@ export const loginSchema = Joi.object().keys({
     })
 
 
+export const signupSchema = Joi.object().keys({
+        userName: Joi.string().required(),
+        firstName: Joi.string(),
+        lastName: Joi.string(),
+        email: Joi.string().email().required(),
+        password:Joi.string().required()
+      })
 
 //     schemas: {
 //         signupSchema:  Joi.object().keys({

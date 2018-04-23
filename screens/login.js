@@ -41,7 +41,7 @@ class loginScreen extends React.Component{
             email:this.state.userName,
             password:this.state.password,
         }
-        const inputFormValid =  validateInput(this.state.userName,this.state.password)
+        const inputFormValid =  validateInput(data)
         await this.props.login(data)
         }catch(err){
             this.setState({err})
