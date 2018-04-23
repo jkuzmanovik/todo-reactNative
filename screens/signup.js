@@ -1,15 +1,23 @@
 import React from 'react'
-import {Text,View,Button} from 'react-native'
+import SignupInput from '../components/signupInput'
 
 export default class loginScreen extends React.Component{
-    state = {
+
+    static navigationOptions = {
+        headerTitle:'Sign up',
     }
 
+    state = {
+        userName:'',
+        firstName:'',
+        lastName:'',
+        email:'',
+        password:'',
+    }
+    textInput = field => value => { this.setState({[field]:value}) }
     render(){
         return(
-            <View>
-                <Text> loginScreen </Text>
-            </View>
+            <SignupInput {...this.state} textInput = {this.textInput} />
         )
     }
 }

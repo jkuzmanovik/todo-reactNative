@@ -43,9 +43,14 @@ class loginScreen extends React.Component{
             this.setState({err})
         }
     }
+    signup = () => {
+        this.props.navigation.navigate('signup')
+    }
+
+
     render(){
         return(
-                <LoginInput {...this.state} fetching = {this.props.fetching}   userNameInput = {this.userNameInput} passwordInput={this.passwordInput} onSubmit={this._onSubmit}/>
+                <LoginInput {...this.state} fetching = {this.props.fetching} signup={this.signup}   userNameInput = {this.userNameInput} passwordInput={this.passwordInput} onSubmit={this._onSubmit}/>
         )
     }
 }

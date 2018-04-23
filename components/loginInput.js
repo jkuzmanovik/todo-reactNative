@@ -17,6 +17,9 @@ const LoginInput = (props) => (
         <View style={styles.footer}>
             {loginButton(props)}
         </View>
+        <View>
+                <Button title="SIGN UP" rounded  large backgroundColor='grey' onPress={props.signup} />
+        </View>
     </View>
 )
 
@@ -35,7 +38,7 @@ checkError = (props,input) =>{
             <Button loading large backgroundColor='#7e8a9e' rounded  onPress={props.onSubmit} />
              )
        return(
-                <Button title="LOADING BUTTON"  large backgroundColor='#7e8a9e' rounded title='login' onPress={props.onSubmit} />
+                <Button large backgroundColor='#7e8a9e' rounded title='login' onPress={props.onSubmit} />
                )
 }
 
