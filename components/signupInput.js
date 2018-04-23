@@ -3,7 +3,7 @@ import {Text,View,TextInput,StyleSheet,} from 'react-native'
 import {FormLabel,FormInput, FormValidationMessage,Button,} from 'react-native-elements'
 import PropTypes from 'prop-types'
 
-const signup = (props) => (
+const Signup = (props) => (
             <View>
                 <FormLabel>Username </FormLabel>
                 <FormInput  placeholder='Please enter your Username' value = {props.userName}  onChangeText = {props.textInput('userName')} autoCapitalize = {'none'}  />
@@ -20,10 +20,11 @@ const signup = (props) => (
                 <FormLabel>Password </FormLabel>
                 <FormInput secureTextEntry placeholder='Please enter your passowrd' value = {props.password} onChangeText = {props.textInput('password')} autoCapitalize = {'none'}/>
                 {checkError(props,'password')}
+                {signupButton(props)}
             </View>
 )
 
-signup = (props) => {
+signupButton = (props) => {
     if(props.fetching)
         return(
             <Button loading large backgroundColor='#7e8a9e' rounded  onPress={props.onSubmit} />
@@ -42,7 +43,7 @@ checkError = (props,input) =>{
     return null
  }
 
-signup.propTypes = {
+Signup.propTypes = {
     textInput: PropTypes.func.isRequired,
     userName: PropTypes.string.isRequired,
     firstName: PropTypes.string.isRequired,
@@ -53,4 +54,4 @@ signup.propTypes = {
 //    err: PropTypes.object.isRequired, 
 }
 
-export default signup 
+export default Signup 
