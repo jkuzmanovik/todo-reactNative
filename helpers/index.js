@@ -1,8 +1,8 @@
-import {validateBody,loginSchema} from './joi'
+import {validateBody} from './joi'
 
 
-export const validateInput = (data) => {
-    const result = validateBody(data,loginSchema)
+export const validateInput = (data,schema) => {
+    const result = validateBody(data,schema)
     if(result.error){
          throw new Error (result.error.details[0].path)
     }

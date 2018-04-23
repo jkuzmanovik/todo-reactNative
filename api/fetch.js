@@ -21,6 +21,7 @@ export const login = async (data) => {
         // if(!returined.ok)
         //     throw new Error(returned.ok)
         const Token = await returned.json()
+        console.log("i am returned" + Token)
         return Token
     }catch(err){
         throw new Error(err)

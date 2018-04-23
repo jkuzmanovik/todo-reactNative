@@ -3,6 +3,7 @@ import SignupInput from '../components/signupInput'
 import {connect} from 'react-redux'
 import { logInUser } from '../redux/action';
 import {validateInput} from '../helpers'
+import {signupSchema} from '../helpers/joi'
 
 class signupScreen extends React.Component{
 
@@ -36,7 +37,7 @@ class signupScreen extends React.Component{
                 email:this.state.email,
                 password:this.state.password,
             }
-            const inputFormValid =  validateInput(data)
+            const inputFormValid =  validateInput(data,signupSchema)
             await this.props.login(data)
             }catch(err){
                 this.setState({err})

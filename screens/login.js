@@ -4,6 +4,7 @@ import LoginInput from '../components/loginInput'
 import {connect} from 'react-redux'
 import { logInUser } from '../redux/action';
 import {validateInput} from '../helpers'
+import {loginSchema} from '../helpers/joi'
 
 class loginScreen extends React.Component{
     state = {
@@ -41,7 +42,7 @@ class loginScreen extends React.Component{
             email:this.state.userName,
             password:this.state.password,
         }
-        const inputFormValid =  validateInput(data)
+        const inputFormValid =  validateInput(data,loginSchema)
         await this.props.login(data)
         }catch(err){
             this.setState({err})
